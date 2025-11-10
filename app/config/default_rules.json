@@ -1,0 +1,68 @@
+{
+  "rules": [
+    {
+      "rule_id": "RULE-OVERSPEED-001",
+      "source_type": "OVERSPEEDING",
+      "name": "Overspeeding Critical Escalation",
+      "description": "Escalate to CRITICAL if driver has 3+ overspeeding incidents within 1 hour",
+      "conditions": {
+        "escalate_if_count": 3,
+        "window_mins": 60,
+        "expire_after_mins": 1440
+      },
+      "is_active": true,
+      "priority": 1
+    },
+    {
+      "rule_id": "RULE-COMPLIANCE-001",
+      "source_type": "COMPLIANCE",
+      "name": "Document Renewal Auto-Close",
+      "description": "Auto-close compliance alerts when document is renewed",
+      "conditions": {
+        "auto_close_if": "document_valid",
+        "expire_after_mins": 10080
+      },
+      "is_active": true,
+      "priority": 1
+    },
+    {
+      "rule_id": "RULE-FEEDBACK-001",
+      "source_type": "FEEDBACK_NEGATIVE",
+      "name": "Negative Feedback Escalation",
+      "description": "Escalate if driver receives 2+ negative feedbacks within 24 hours",
+      "conditions": {
+        "escalate_if_count": 2,
+        "window_mins": 1440,
+        "expire_after_mins": 2880
+      },
+      "is_active": true,
+      "priority": 1
+    },
+    {
+      "rule_id": "RULE-DOCUMENT-001",
+      "source_type": "DOCUMENT_EXPIRY",
+      "name": "Document Expiry Auto-Close",
+      "description": "Auto-close when document is renewed",
+      "conditions": {
+        "auto_close_if": "document_valid",
+        "expire_after_mins": 4320
+      },
+      "is_active": true,
+      "priority": 2
+    },
+    {
+      "rule_id": "RULE-SAFETY-001",
+      "source_type": "SAFETY",
+      "name": "Safety Alert Escalation",
+      "description": "Escalate if 2 safety incidents within 12 hours",
+      "conditions": {
+        "escalate_if_count": 2,
+        "window_mins": 720,
+        "expire_after_mins": 2880
+      },
+      "is_active": true,
+      "priority": 1
+    }
+  ]
+}
+

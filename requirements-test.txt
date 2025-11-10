@@ -1,0 +1,28 @@
+# Testing dependencies for FastAPI Alert Management System
+# 
+# Installation:
+#   pip install -r requirements-test.txt
+#
+# Or install in development mode:
+#   pip install -r requirements-test.txt -e .
+
+# Core testing framework
+pytest>=7.4.0
+pytest-order>=1.1.0
+
+# HTTP client for API testing
+requests>=2.31.0
+
+# Colored output for scripts
+colorama>=0.4.6
+
+# Environment variable management
+python-dotenv>=1.0.0
+
+# Optional: For better test output
+pytest-html>=3.2.0
+pytest-cov>=4.1.0
+
+# Optional: For async testing (if needed in future)
+pytest-asyncio>=0.21.0
+
