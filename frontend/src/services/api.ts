@@ -11,8 +11,14 @@ import type {
   Alert,
 } from '../types';
 
+// Prefer environment variable in production (Vercel), fallback to same-origin or localhost in dev
+const BASE_URL =
+  (process.env.REACT_APP_API_URL as string | undefined) ||
+  (typeof window !== 'undefined' ? '' : 'http://localhost:8000');
+
 const api: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:8000',
+  // If BASE_URL is empty string, axios will use relative URLs (same origin)
+  baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json'
   }
@@ -47,6 +53,13 @@ api.interceptors.response.use(
 export const authAPI = {
   login: (username: string, password: string) =>
     api.post('/auth/login', { username, password }),
+  register: (data: {
+    username: string;
+    email: string;
+    password: string;
+    full_name: string;
+    role?: 'ADMIN' | 'OPERATOR' | 'VIEWER';
+  }) => api.post('/auth/register', { role: 'VIEWER', ...data }),
   getMe: () => api.get('/auth/me')
 };
 
